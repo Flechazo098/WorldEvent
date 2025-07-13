@@ -1,6 +1,7 @@
 package com.flechazo.worldevent.client;
 
 import com.flechazo.worldevent.WorldEvent;
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -10,9 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * 客户端事件处理器
- */
 @OnlyIn(Dist.CLIENT)
 public class ClientEventHandler {
     private static final Map<UUID, ClientActiveEvent> ACTIVE_EVENTS = new ConcurrentHashMap<>();
@@ -36,10 +34,8 @@ public class ClientEventHandler {
     public static Map<UUID, ClientActiveEvent> getActiveEvents() {
         return ACTIVE_EVENTS;
     }
-    
-    /**
-     * 客户端活跃事件
-     */
+
+    @Getter
     public static class ClientActiveEvent {
         private final UUID eventId;
         private final ResourceLocation eventType;
@@ -54,17 +50,13 @@ public class ClientEventHandler {
         
         public void start() {
             active = true;
-            // 在这里添加客户端视觉效果
+            // TODO 客户端视觉效果
         }
         
         public void end() {
             active = false;
-            // 在这里清理客户端视觉效果
+            // TODO 清理客户端视觉效果
         }
-        
-        public UUID getEventId() { return eventId; }
-        public ResourceLocation getEventType() { return eventType; }
-        public BlockPos getCenterPos() { return centerPos; }
-        public boolean isActive() { return active; }
+
     }
 }
